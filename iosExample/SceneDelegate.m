@@ -20,6 +20,7 @@
         UIWindow *window = [[UIWindow alloc] initWithWindowScene:(UIWindowScene *)scene];
         self.window = window;
         [self.window makeKeyAndVisible];
+        self.window.backgroundColor = [UIColor whiteColor];
         self.window.rootViewController = [self rootViewController];
     }
 }

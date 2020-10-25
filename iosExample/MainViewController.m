@@ -6,11 +6,15 @@
 //
 
 #import "MainViewController.h"
-#import "TMLabelCollectionViewCell.h"
+#import "TMCollectionViewController.h"
+#import <Masonry/Masonry.h>
 
-@interface MainViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MainViewController ()<TMCollectionViewControllerDelegate>
 
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UIButton *pushCollectionViewButton;
+@property (nonatomic, strong) UIButton *presentCollectionViewButton;
+
+@property (nonatomic, strong) UILabel *contentLabel;
 
 @end
 
@@ -20,51 +24,82 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.collectionView];
     self.view.backgroundColor = [UIColor whiteColor];
-}
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 
-#pragma mark - UICollectionViewDataSource
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 100;
-}
-
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    TMLabelCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TMLabelCollectionViewCell class]) forIndexPath:indexPath];
+    [self.view addSubview:self.pushCollectionViewButton];
+    [self.view addSubview:self.presentCollectionViewButton];
+    [self.view addSubview:self.contentLabel];
     
-    cell.contentLabel.text = @"测试文字";
+    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.bottom.equalTo(self.view).with.offset(-30);
+    }];
+}
 
-    if (indexPath.row % 2 == 0) {
-        cell.countLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
-    }
-    
-    return cell;
+#pragma mark - TMCollectionViewControllerDelegate
+
+- (void)reachCellForIndex:(NSIndexPath *)indexPath {
+    [self setContent:[NSString stringWithFormat:@"到达：%ld", indexPath.row]];
 }
 
 #pragma mark - Private
 
+- (void)setContent: (NSString *)content {
+    self.contentLabel.text = content;
+    [self.contentLabel sizeToFit];
+}
+
+#pragma mark - Event
+
+- (void)pushButtonClick {
+    TMCollectionViewController *controller = [[TMCollectionViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    
+    controller.delegate = self;
+}
+
+- (void)presentButtonClick {
+    TMCollectionViewController *controller = [[TMCollectionViewController alloc] init];
+    UINavigationController *naviController = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:naviController animated:YES completion:^{
+        NSLog(@"present 结束");
+    }];
+    
+    __weak typeof(self) weakSelf = self;
+    controller.reachCellForIndexCallback = ^(NSIndexPath * _Nonnull indexPath) {
+        [weakSelf setContent:[NSString stringWithFormat:@"到达：%ld", indexPath.row]];
+    };
+}
+
 #pragma mark - Getter
 
-- (UICollectionView *)collectionView {
-    if (!_collectionView) {
-        UICollectionViewFlowLayout *layout =[[UICollectionViewFlowLayout alloc] init];
-        [layout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        
-        layout.itemSize = CGSizeMake(375, 60);
-        
-        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
-        _collectionView.backgroundColor = [UIColor whiteColor];
-        
-        [_collectionView registerClass:[TMLabelCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([TMLabelCollectionViewCell class])];
+- (UIButton *)pushCollectionViewButton {
+    if (!_pushCollectionViewButton) {
+        _pushCollectionViewButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 100, 100, 44)];
+        [_pushCollectionViewButton setTitle:@"打开 collection - push" forState:UIControlStateNormal];
+        [_pushCollectionViewButton addTarget:self action:@selector(pushButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [_pushCollectionViewButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
-    return _collectionView;
+    return _pushCollectionViewButton;
+}
+
+- (UIButton *)presentCollectionViewButton {
+    if (!_presentCollectionViewButton) {
+        _presentCollectionViewButton = [[UIButton alloc] initWithFrame:CGRectMake(375 - 20 - 100, 100, 100, 44)];
+        [_presentCollectionViewButton setTitle:@"打开 collection - present" forState:UIControlStateNormal];
+        [_presentCollectionViewButton addTarget:self action:@selector(presentButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [_presentCollectionViewButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
+    return _presentCollectionViewButton;
+}
+
+- (UILabel *)contentLabel {
+    if (!_contentLabel) {
+        _contentLabel = [[UILabel alloc] init];
+        [_contentLabel setTextColor:[UIColor blackColor]];
+    }
+    return _contentLabel;
 }
 
 @end
