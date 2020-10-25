@@ -14,6 +14,7 @@
 		8497D14925455C8F005FDA4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497D14825455C8F005FDA4F /* main.m */; };
 		8497D15325455C90005FDA4F /* iosExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497D15225455C90005FDA4F /* iosExampleTests.m */; };
 		8497D15E25455C90005FDA4F /* iosExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497D15D25455C90005FDA4F /* iosExampleUITests.m */; };
+		8497D1C525458C8C005FDA4F /* TMLabelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497D1C425458C8C005FDA4F /* TMLabelCollectionViewCell.m */; };
 		96D88CB674E93C8827CCD20B /* libPods-iosExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71595B0856156EEC891EAA7E /* libPods-iosExample.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,8 @@
 		8497D15925455C90005FDA4F /* iosExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8497D15D25455C90005FDA4F /* iosExampleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iosExampleUITests.m; sourceTree = "<group>"; };
 		8497D15F25455C90005FDA4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8497D1C325458C8C005FDA4F /* TMLabelCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMLabelCollectionViewCell.h; sourceTree = "<group>"; };
+		8497D1C425458C8C005FDA4F /* TMLabelCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMLabelCollectionViewCell.m; sourceTree = "<group>"; };
 		AF6BC1399E9A7D8A94020FD1 /* Pods-iosExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosExample.debug.xcconfig"; path = "Target Support Files/Pods-iosExample/Pods-iosExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,7 +91,6 @@
 				AF6BC1399E9A7D8A94020FD1 /* Pods-iosExample.debug.xcconfig */,
 				443EB74061BE5F0DEE189769 /* Pods-iosExample.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -125,6 +127,7 @@
 		8497D13525455C8D005FDA4F /* iosExample */ = {
 			isa = PBXGroup;
 			children = (
+				8497D1C225458C6F005FDA4F /* cell */,
 				8497D13625455C8D005FDA4F /* AppDelegate.h */,
 				8497D13725455C8D005FDA4F /* AppDelegate.m */,
 				8497D13925455C8D005FDA4F /* SceneDelegate.h */,
@@ -154,6 +157,15 @@
 				8497D15F25455C90005FDA4F /* Info.plist */,
 			);
 			path = iosExampleUITests;
+			sourceTree = "<group>";
+		};
+		8497D1C225458C6F005FDA4F /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				8497D1C325458C8C005FDA4F /* TMLabelCollectionViewCell.h */,
+				8497D1C425458C8C005FDA4F /* TMLabelCollectionViewCell.m */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,6 +325,7 @@
 				8497D13825455C8D005FDA4F /* AppDelegate.m in Sources */,
 				8497D14925455C8F005FDA4F /* main.m in Sources */,
 				8497D13B25455C8D005FDA4F /* SceneDelegate.m in Sources */,
+				8497D1C525458C8C005FDA4F /* TMLabelCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
