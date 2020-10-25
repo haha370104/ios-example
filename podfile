@@ -1,0 +1,5 @@
+target 'iosExample' do
+
+pod 'Masonry'
+
+end
