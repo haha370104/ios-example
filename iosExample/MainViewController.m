@@ -7,6 +7,7 @@
 
 #import "MainViewController.h"
 #import "TMCollectionViewController.h"
+#import "UIViewController+TMShowTimes.h"
 #import <Masonry/Masonry.h>
 
 @interface MainViewController ()<TMCollectionViewControllerDelegate>
@@ -14,6 +15,7 @@
 @property (nonatomic, strong) UIButton *pushCollectionViewButton;
 @property (nonatomic, strong) UIButton *presentCollectionViewButton;
 
+@property (nonatomic, strong) UILabel *showTimesLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
 
 @end
@@ -30,11 +32,21 @@
     [self.view addSubview:self.pushCollectionViewButton];
     [self.view addSubview:self.presentCollectionViewButton];
     [self.view addSubview:self.contentLabel];
+    [self.view addSubview:self.showTimesLabel];
     
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
         make.bottom.equalTo(self.view).with.offset(-30);
     }];
+    [self.showTimesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.bottom.equalTo(self.contentLabel.mas_top).with.offset(-30);
+    }];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.showTimesLabel.text = [NSString stringWithFormat:@"展示次数：%ld", self.showTimes];
 }
 
 #pragma mark - TMCollectionViewControllerDelegate
@@ -100,6 +112,14 @@
         [_contentLabel setTextColor:[UIColor blackColor]];
     }
     return _contentLabel;
+}
+
+- (UILabel *)showTimesLabel {
+    if (!_showTimesLabel) {
+        _showTimesLabel = [[UILabel alloc] init];
+        [_showTimesLabel setTextColor:[UIColor blackColor]];
+    }
+    return _showTimesLabel;
 }
 
 @end

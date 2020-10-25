@@ -16,6 +16,7 @@
 		8497D15E25455C90005FDA4F /* iosExampleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497D15D25455C90005FDA4F /* iosExampleUITests.m */; };
 		8497D1C525458C8C005FDA4F /* TMLabelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497D1C425458C8C005FDA4F /* TMLabelCollectionViewCell.m */; };
 		8497D1CF25459C92005FDA4F /* TMCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497D1CE25459C92005FDA4F /* TMCollectionViewController.m */; };
+		8497D1D82545A38B005FDA4F /* UIViewController+TMShowTimes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497D1D72545A38B005FDA4F /* UIViewController+TMShowTimes.m */; };
 		96D88CB674E93C8827CCD20B /* libPods-iosExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71595B0856156EEC891EAA7E /* libPods-iosExample.a */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,8 @@
 		8497D1C425458C8C005FDA4F /* TMLabelCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMLabelCollectionViewCell.m; sourceTree = "<group>"; };
 		8497D1CD25459C92005FDA4F /* TMCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMCollectionViewController.h; sourceTree = "<group>"; };
 		8497D1CE25459C92005FDA4F /* TMCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMCollectionViewController.m; sourceTree = "<group>"; };
+		8497D1D62545A38B005FDA4F /* UIViewController+TMShowTimes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TMShowTimes.h"; sourceTree = "<group>"; };
+		8497D1D72545A38B005FDA4F /* UIViewController+TMShowTimes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TMShowTimes.m"; sourceTree = "<group>"; };
 		AF6BC1399E9A7D8A94020FD1 /* Pods-iosExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosExample.debug.xcconfig"; path = "Target Support Files/Pods-iosExample/Pods-iosExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +133,8 @@
 		8497D13525455C8D005FDA4F /* iosExample */ = {
 			isa = PBXGroup;
 			children = (
+				8497D1D52545A34B005FDA4F /* Category */,
+				8497D1D42545A2A6005FDA4F /* Model */,
 				8497D1D32545A280005FDA4F /* Router */,
 				8497D1C925459C69005FDA4F /* RouterViewController */,
 				8497D1C225458C6F005FDA4F /* Cell */,
@@ -187,6 +192,22 @@
 			children = (
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		8497D1D42545A2A6005FDA4F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8497D1D52545A34B005FDA4F /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				8497D1D62545A38B005FDA4F /* UIViewController+TMShowTimes.h */,
+				8497D1D72545A38B005FDA4F /* UIViewController+TMShowTimes.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8497D1D82545A38B005FDA4F /* UIViewController+TMShowTimes.m in Sources */,
 				8497D13E25455C8D005FDA4F /* MainViewController.m in Sources */,
 				8497D13825455C8D005FDA4F /* AppDelegate.m in Sources */,
 				8497D14925455C8F005FDA4F /* main.m in Sources */,
