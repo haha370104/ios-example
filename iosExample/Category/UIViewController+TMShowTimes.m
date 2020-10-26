@@ -42,6 +42,7 @@ static void *showTimesKey = &showTimesKey;
 - (void)tm_viewDidAppear:(BOOL)animated {
     [self tm_viewDidAppear: animated];
     [self addShowTimesOnce];
+    NSLog(@"对象为：%@，次数为 %ld", NSStringFromClass([self class]), self.showTimes);
 }
 
 - (void)addShowTimesOnce {

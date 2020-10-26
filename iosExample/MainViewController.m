@@ -7,6 +7,7 @@
 
 #import "MainViewController.h"
 #import "TMCollectionViewController.h"
+#import "TMRouter.h"
 #import "UIViewController+TMShowTimes.h"
 #import <Masonry/Masonry.h>
 
@@ -17,6 +18,8 @@
 
 @property (nonatomic, strong) UILabel *showTimesLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
+
+@property (nonatomic, strong) UIButton *routerTestButton;
 
 @end
 
@@ -33,6 +36,7 @@
     [self.view addSubview:self.presentCollectionViewButton];
     [self.view addSubview:self.contentLabel];
     [self.view addSubview:self.showTimesLabel];
+    [self.view addSubview:self.routerTestButton];
     
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
@@ -41,6 +45,9 @@
     [self.showTimesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
         make.bottom.equalTo(self.contentLabel.mas_top).with.offset(-30);
+    }];
+    [self.routerTestButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
     }];
 }
 
@@ -84,6 +91,11 @@
     };
 }
 
+- (void)routerButtonClick {
+    NSURLComponents *url = [NSURLComponents componentsWithString:@"tm://TMPageTwoViewController/pushWithParams?content=123"];
+    [[TMRouter sharedInstance] doActionWithURL:url];
+}
+
 #pragma mark - Getter
 
 - (UIButton *)pushCollectionViewButton {
@@ -120,6 +132,16 @@
         [_showTimesLabel setTextColor:[UIColor blackColor]];
     }
     return _showTimesLabel;
+}
+
+- (UIButton *)routerTestButton {
+    if (!_routerTestButton) {
+        _routerTestButton = [[UIButton alloc] init];
+        [_routerTestButton setTitle:@"router 测试" forState:UIControlStateNormal];
+        [_routerTestButton addTarget:self action:@selector(routerButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [_routerTestButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
+    return _routerTestButton;
 }
 
 @end
